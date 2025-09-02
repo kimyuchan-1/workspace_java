@@ -1,0 +1,10 @@
+package com.ruby.java.ch02데이터타입;
+
+public class 실습_2_5타입변환 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

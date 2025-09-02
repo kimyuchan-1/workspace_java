@@ -1,0 +1,23 @@
+package com.ruby.java.ch02데이터타입;
+
+public class MinBillCount {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a = 167000 ;
+		int w50000, w10000, w5000, w1000;
+		
+		w50000 = a / 50000 ;
+		w10000 = (a % 50000) / 10000 ;
+		w5000 = ((a % 50000) % 10000) / 5000 ;
+		w1000 = (((a % 50000) % 10000) % 5000) / 1000 ;
+		
+		System.out.println(a+"원을 지불하기 위해 필요한 최소 지폐 장수\n"
+				+"5만원: "+w50000
+				+"장 \n1만원: "+w10000
+				+"장 \n5천원: "+w5000
+				+"장 \n1천원: "+w1000
+				+"장");
+	}
+
+}
