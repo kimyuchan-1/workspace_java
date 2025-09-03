@@ -33,6 +33,7 @@ public class 실습_2_5타입변환 {
 
 		*/
 		System.out.println("실수변수값 = "+c+", 정수변수값 = "+d);
+		sc.close();
 	}
 
 }

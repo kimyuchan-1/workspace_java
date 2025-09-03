@@ -25,7 +25,7 @@ public class 실습_2_4조건문논리연산 {
 
 
 		// 불리언 변수 선언 및 초기화
-		boolean b = false;
+//		boolean b = false;
 		/*
 
 		* 부산청년 여부를 표현하는 불리언 변수를 false로 선언한다
@@ -57,6 +57,7 @@ public class 실습_2_4조건문논리연산 {
 		* "나이 = **, 도시 = **, 부산청년여부 = **"
 
 		*/
+		sc.close();
 	}
 
 }

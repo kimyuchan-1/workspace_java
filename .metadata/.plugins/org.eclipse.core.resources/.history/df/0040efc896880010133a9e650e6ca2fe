@@ -1,0 +1,39 @@
+package com.ruby.java.ch03제어문;
+
+import java.util.Scanner;
+
+/*
+ * 달의 일 수 계산
+ * int month = sc.nextInt()
+ * switch(month) { 
+ *     case1:
+ *     		break;
+ *     case3:
+ *         days=31;
+ * }
+ * 
+ */
+public class 실습_3장_3switch문_달일수 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int month = sc.nextInt();
+		int days;
+		switch(month) {
+		case 2:
+			days=31;
+			System.out.println(month+"월의 일 수는 "+days+"일입니다.");
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			days=30;
+			System.out.println(month+"월의 일 수는 "+days+"일입니다.");
+			break;
+		default:
+			days=31;
+			System.out.println(month+"월의 일 수는 "+days+"일입니다.");
+			break;
+		}
+	}
+}
