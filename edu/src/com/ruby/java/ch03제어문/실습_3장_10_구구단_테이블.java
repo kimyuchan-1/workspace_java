@@ -7,5 +7,7 @@ package com.ruby.java.ch03제어문;
  * 
  */
 public class 실습_3장_10_구구단_테이블 {
-
+	public static void main(String[] args) {
+	
+	}
 }
