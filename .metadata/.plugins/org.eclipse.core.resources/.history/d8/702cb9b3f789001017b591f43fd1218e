@@ -1,0 +1,46 @@
+package com.ruby.java.ch03제어문;
+
+public class Gugudan {
+	public static void printVertical() {
+		for (int i = 2; i < 10; i++) {
+			System.out.println(i + "단");
+			for (int j = 1; j < 10; j++) {
+				System.out.println(i + " x " + j + " = " + i * j);
+			}
+//			System.out.println("-----------------------------------");
+			System.out.println("-".repeat(20));
+		}
+	}
+		
+	public static void printHorizontal() {
+		for (int i = 1; i < 10; i++) {
+			for (int j = 2; j < 10; j++) {
+				System.out.print(j + " x " + i + " = " + j * i + "\t");
+			}
+		System.out.println("\n");
+		}
+	}
+	
+	public static void printColumn(int col) {
+		for (int i = 1; i < 10 ; i++) {
+			for (int j = 2; j <= col+1; j++) {
+				for (int k = 2; k <= 10; k++) {
+					if (j == col +1) {
+						System.out.println();
+					}
+					System.out.print(k + " x " + i + " = " + k * i + "\t");
+					
+				}
+				
+			}
+
+		}
+	}
+	
+	public static void main(String[] args) {
+//		printVertical();
+//		printHorizontal();
+		printColumn(3);
+	}
+
+}

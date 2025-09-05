@@ -4,10 +4,12 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="true"/>
 		<list key="findhistory">
+			<item value="arr"/>
 			<item value="&gt;"/>
 			<item value="max"/>
 		</list>
 		<list key="replacehistory">
+			<item value="price"/>
 			<item value="&lt;"/>
 			<item value="min"/>
 		</list>

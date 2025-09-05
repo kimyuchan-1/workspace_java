@@ -12,47 +12,22 @@ public class 실습_4_1_변수들사용 {
 		int score3 = 87;
 		int score4 = 67;
 		int score5 = 73;
-		int sum = 0;
-		int max = 0;
-		int min = 999;
-		double avg = 0;
+
+		int max = score1;
+		int min = score1;
+
+		if (score2 > max) max = score2;
+		if (score3 > max) max = score3;
+		if (score4 > max) max = score4;
+		if (score5 > max) max = score5;
+
+		if (score2 < min) min = score2;
+		if (score3 < min) min = score3;
+		if (score4 < min) min = score4;
+		if (score5 < min) max = score5;
 		
-		sum = score1 + score2 + score3 + score4 + score5;
-		avg = (double)sum / 5;
-		if (score1 > max) {
-			max = score1 ;
-		}
-		if (score2 > max) {
-			max = score2 ;
-		}
-		if (score3 > max) {
-			max = score3;
-		}
-		if (score4 > max) {
-			max = score4;
-		}
-		if (score5 > max) {
-			max = score5;
-		}
-		if (score1 < min) {
-			min = score1 ;
-		}
-		if (score2 < min) {
-			min = score2 ;
-		}
-		if (score3 < min) {
-			min = score3;
-		}
-		if (score4 < min) {
-			min = score4;
-		}
-		if (score5 < min) {
-			max = score5;
-		}
-		
-		System.out.println("총 점: "+sum);
-		System.out.println("평 균: "+avg);
 		System.out.println("최댓값: "+max);
 		System.out.println("최솟값: "+min);
+		System.out.println("평 균: "+(score1 + score2 + score3 + score4 + score5)/5.0);
 	}
 }

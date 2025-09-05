@@ -1,0 +1,20 @@
+package com.ruby.java.ch04배열;
+
+import java.util.Random;
+
+public class MergeArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Random rd = new Random();
+		int N = 5;
+		int[] A = new int[N];
+		int[] B = new int[N];
+		
+		for (int i = N; i < A.length; i++) {
+			A[i] = rd.nextInt();
+		}
+		
+	}
+
+}

@@ -1,0 +1,38 @@
+package com.ruby.java.ch04배열;
+
+import java.util.Random;
+
+public class MergeArray {
+	
+	public static void printArray(int[] arr) {
+		System.out.print("[");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i]);
+			if (i != arr.length -1) System.out.print(",");
+		}
+		System.out.println("]");
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Random rd = new Random();
+		int[] A = new int[5];
+		int[] B = new int[5];
+		int[] C = new int[10];
+		
+		for (int i = 0; i < A.length; i++) {
+			A[i] = rd.nextInt(11);
+			B[i] = rd.nextInt(11);
+		}
+		
+		for (int i = 0; i < C.length; i++) {
+			if (i % 2 == 1) C[i] = A[(int)(i/2)+1];
+			else C[i] = B[i/2];
+		}
+		
+		printArray(A);
+		printArray(B);
+		printArray(C);
+	}
+
+}

@@ -9,7 +9,7 @@ public class 실습_4_2_배열생성최대값 {
 		 */
 		int[] price = {49, 91, 87, 67, 73};
 
-		int Pricemax = 0;
+		int Pricemax = price[0];
 		
 		
         // for문을 사용한 최대값 찾기

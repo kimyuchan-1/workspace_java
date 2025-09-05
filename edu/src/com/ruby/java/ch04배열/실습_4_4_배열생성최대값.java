@@ -19,34 +19,29 @@ import java.util.Random;
  */
 public class 실습_4_4_배열생성최대값 {
 	public static void main(String[] args) {
-		int[] arr = new int[10];
+		int[] price = new int[10];
 		Random rd =new Random();
 		int sum = 0;
 		int min = 101;
 		int max = 0;
 		double avg = 0;
 		
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = rd.nextInt(101);
-			if (i == 0) {
-				System.out.print("[");
-			}
-			System.out.print(arr[i]);
-			if (i != arr.length-1) {
-				System.out.print(",");
-			}
-			if (i == arr.length-1) {
-				System.out.println("]");
-			}
-			if (arr[i] > max) {
-				max = arr[i];
-			}
-			if (arr[i] < min) {
-				min = arr[i];
-			}
-			sum += arr[i];
+		
+		System.out.print("[");
+		for (int i = 0; i < price.length; i++) {
+			price[i] = rd.nextInt(101);
+			
+			System.out.print(price[i]);
+			if (i != price.length-1) System.out.print(",");
+			
+			if (price[i] > max) max = price[i];
+			if (price[i] < min) min = price[i];
+			sum += price[i];
 		}
-	avg = (double) sum / arr.length;
+		System.out.println("]");
+		
+		
+	avg = (double) sum / price.length;
 	System.out.println("최대값 = "+ max);
 	System.out.println("최소값 = "+ min);
 	System.out.println("평균값 = "+ avg);

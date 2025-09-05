@@ -43,6 +43,19 @@ import java.util.Random;
  */
 
 public class 실습_4_5_행렬연산 {
+	
+	public static void printArray(int[][] str, String msg) {
+		System.out.println("table "+ msg +"\n");
+		for (int i = 0; i < str.length; i++) {
+			for (int j = 0; j < str[i].length; j++) {
+				System.out.print(str[i][j]);
+				System.out.print("\t");
+			}
+
+			System.out.println("\n");
+		}
+	}
+	
 	public static void main(String[] args) {
 		int[][] A = new int[3][5];
 		int[][] B = new int[3][5];
@@ -73,52 +86,12 @@ public class 실습_4_5_행렬연산 {
 				}
 			}
 		}
-
-		System.out.println("table A \n");
-		for (int i = 0; i < A.length; i++) {
-			for (int j = 0; j < A[i].length; j++) {
-				System.out.print(A[i][j]);
-				System.out.print("\t");
-			}
-			System.out.println("\n");
-		}
-
-		System.out.println("table B \n");
-		for (int i = 0; i < B.length; i++) {
-			for (int j = 0; j < B[i].length; j++) {
-				System.out.print(B[i][j]);
-				System.out.print("\t");
-			}
-			System.out.println("\n");
-		}
-
-		System.out.println("table C \n");
-		for (int i = 0; i < C.length; i++) {
-			for (int j = 0; j < C[i].length; j++) {
-				System.out.print(C[i][j]);
-				System.out.print("\t");
-			}
-			System.out.println("\n");
-		}
-
-		System.out.println("table D \n");
-		for (int i = 0; i < D.length; i++) {
-			for (int j = 0; j < D[i].length; j++) {
-				System.out.print(D[i][j]);
-				System.out.print("\t");
-			}
-			System.out.println("\n");
-		}
-
-		System.out.println("table E \n");
-		for (int i = 0; i < E.length; i++) {
-			for (int j = 0; j < E[i].length; j++) {
-				System.out.print(E[i][j]);
-				System.out.print("\t");
-			}
-
-			System.out.println("\n");
-		}
+		
+		printArray(A, "A");
+		printArray(B, "B");
+		printArray(C, "C");
+		printArray(D, "D");
+		printArray(E, "E");
 
 	}
 }

@@ -18,18 +18,15 @@ public class 실습_4_3_배열_점수평균 {
 		Random rd =new Random();
 		
 		for (int i = 0; i < score.length; i++) {
-			score[i] = rd.nextInt(100);
-			if (score[i] >= 90) {
-				grade = "A" ;
-			} else if (score[i] < 90 && score[i] >= 80) {
-				grade = "B" ;
-			} else if (score[i] < 80 && score[i] >= 70) {
-				grade = "C" ;
-			} else if (score[i] < 70 && score[i] >= 60) {
-				grade = "D" ;
-			} else {
-				grade = "F" ;
-			}
+			
+			score[i] = rd.nextInt(101);
+			
+			if (score[i] >= 90) grade = "A";
+			else if (score[i] >= 80) grade = "B" ;
+			else if (score[i] >= 70) grade = "C" ;
+			else if (score[i] >= 60) grade = "D" ;
+			else grade = "F" ;
+			
 			System.out.println(score[i]+"점 - "+grade+" 학점");
 		}
 		
