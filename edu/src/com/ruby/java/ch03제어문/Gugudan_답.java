@@ -1,4 +1,4 @@
-package com.ruby.java.ch04배열.sol;
+package com.ruby.java.ch03제어문;
 
 public class Gugudan_답 {
 

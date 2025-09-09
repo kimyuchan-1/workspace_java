@@ -1,0 +1,48 @@
+package com.ruby.java.ch06객체구현;
+
+public class Member1 {
+	private String name;
+	private int age;
+	
+	public Member1() {
+		System.out.println("Member1() 생성자 실행 ");
+	}
+	
+	public Member1(String n) {
+		name = n;
+		System.out.println("Member(String) 생성자 실행 : "+ n );
+	}
+	
+	public Member1(String n, int a) {
+		name = n;
+		setAge(a);
+		System.out.println("Member(String, int) 생성자 실행 : "+ n + " : " + a);
+	}
+	
+	public int getName() {
+		return name;
+	}
+	
+	public void setName(String n) {
+		this.name = n;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int a) {
+		this.age = a;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("main() 메서드 실행");
+		new Member1();
+		new Member1("Amy");
+		new Member1("Amy", 23);
+	}
+
+	
+
+}

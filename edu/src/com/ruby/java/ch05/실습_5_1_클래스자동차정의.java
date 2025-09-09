@@ -59,6 +59,7 @@ class Car {
 public class 실습_5_1_클래스자동차정의 {
 	public static void main(String[] args) {
         // 자동차 객체 생성
+//        Car car1 = new Car("Hyundai","Sonata",1400,4600,1800,95);
         Car car1 = new Car();
         car1.manufacturer = "Hyundai"; // 제조사
         car1.model = "Sonata"; // 모델명
@@ -67,6 +68,7 @@ public class 실습_5_1_클래스자동차정의 {
         car1.width = 1800; // 전폭(mm)
         car1.speed = 95; // 속도
         
+//        Car car2 = new Car("BMW","M3",1200,4500,1700,110);
         Car car2 = new Car();
         car2.manufacturer = "BMW"; // 제조사
         car2.model = "M3"; // 모델명

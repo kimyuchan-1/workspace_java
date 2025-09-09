@@ -1,0 +1,13 @@
+package com.ruby.java.ch05.abc;
+
+import com.ruby.java.ch05.pnu.*; // *는 잘 사용하진 않음 class 이름을 직접 입력
+
+public class Test01 {
+	
+	public static void main(String[] args) {
+		
+		MyTest01 myTest01 = new MyTest01(); // ctrl + shift + o: package import 단축키
+		System.out.println(myTest01);
+		
+	}
+}

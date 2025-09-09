@@ -5,6 +5,14 @@ class Box {
     double width;  // 가로
     double height; // 세로
     double depth;  // 높이
+    
+    // 속성 설정 메소드
+    void setBox(double w, double h, double d) {
+    	width = w;
+    	height = h;
+    	depth = d;
+    }
+    
     // 부피 계산 메소드
     double getVolume() {
         return width * height * depth;
@@ -45,9 +53,10 @@ public class 실습_5_2_상자클래스 {
         // 박스 객체 생성
         // Box box1 = new Box(10, 5, 3);
         Box box1 = new Box();
-        box1.width = 10;
-        box1.height = 5;
-        box1.depth = 3;
+        box1.setBox(10, 5, 3);
+//        box1.width = 10;
+//        box1.height = 5;
+//        box1.depth = 3;
 
         // 박스 정보 출력
         box1.show();
@@ -62,9 +71,10 @@ public class 실습_5_2_상자클래스 {
         
         //Box box2 = new Box(4, 7, 3);
         Box box2 = new Box();
-        box2.width = 4;
-        box2.height = 7;
-        box2.depth = 3;
+        box2.setBox(4, 7, 3);
+//        box2.width = 4;
+//        box2.height = 7;
+//        box2.depth = 3;
         
         System.out.println(box2);
         //box2.show();
