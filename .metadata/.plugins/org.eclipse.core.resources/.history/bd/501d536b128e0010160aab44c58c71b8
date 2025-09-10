@@ -1,0 +1,102 @@
+package com.ruby.java.ch07상속;
+// overload: 함수명에 더 많은 어떤 것(semantic)을 부여; to give too much of something 
+// override: 상속받은 함수를 대체하고 재정의; to neutralize the action of something
+
+class PersonMethodOverride {
+	private String name;
+	private int age;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String toString() {
+		return name + ", " + age;
+	}
+}
+
+class EmployeeMethodOverride extends PersonMethodOverride {
+	private String dept;
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	} 
+	// method overriding
+	public String toString() {
+		//return name + ", "+age + "," + dept;//오류 발생: 이유는 name,age가 Person의 private이기 때문
+		//283페이지 하단 문단 이해
+		return getName() + ", "+getAge() + ", " + dept;
+	}
+}
+class ProfessorMethodOverride extends PersonMethodOverride {
+	private String subject;
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	// method overriding
+	public String toString() {
+		//return name + ", "+age + "," + subject;
+		return getName() + ", "+getAge() + ", " + subject;
+	}
+}
+class StudentMethodOverride extends PersonMethodOverride {
+	private String major;
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	// method overriding - 285페이지 중간: 1,2,3,4 설명 암기 Person class의 method toString()을 대체하고 overriding한 method 호출
+	@Override // annotation; java 컴파일러에게 overriding을 명시적으로 알림
+	public String toString() {
+		//return name + ", "+age + "," + major;
+		//return this.getName() + ", "+getAge() + ", " + major; // this -> 참조 변수가 가리키는 객체를 의미, e가 호출하는 heap 영역의 객체
+		//아직도 중복 코딩 발생
+		return super.toString() + ", " + major;
+	}
+}
+
+class Rectangle {
+	int width;
+	int height;
+}
+
+public class 클래스_메소드오버라이딩_7_2_1절 {
+	public static void main(String[] args) {
+		Rectangle r = new Rectangle();
+		System.out.println(r);
+		
+	    EmployeeMethodOverride e = new EmployeeMethodOverride();
+		ProfessorMethodOverride p = new ProfessorMethodOverride();
+		StudentMethodOverride s = new StudentMethodOverride();
+
+		e.setName("오정임");
+		e.setAge(47);
+		e.setDept("입학처");
+
+		p.setName("김푸름");
+		p.setAge(52);
+		p.setSubject("빅데이터");
+
+		s.setName("김유빈");
+		s.setAge(20);
+		s.setMajor("컴퓨터과학");
+
+		System.out.println(e.toString());
+		System.out.println(p.toString());
+		System.out.println(s.toString());
+	}
+}

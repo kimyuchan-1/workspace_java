@@ -1,0 +1,51 @@
+package com.ruby.java.ch07상속;
+
+@SuppressWarnings("unused")
+
+class Person2 {
+//final class Person2 {
+	private final String ssn_id; // final 변수를 초기화만 하고 선언하지 않는다면 이후 변수 선언 이후 변경 불가
+	// private final String ssn_id = "2025_09";
+	private String name;
+	private int age;
+
+	public Person2() {// 오류 - 이유는?
+		System.out.println("Person2() 생성자 실행!");
+	}
+
+	public Person2(String sid, int age) {// final 변수 초기화
+		ssn_id = sid; // final 변수를 초기에 선언했다면 이후에는 변경 불가
+		this.age = age;
+		System.out.println("Person2(sid, age) 생성자 실행!");
+	}
+
+	void set_ssn_id(String sid) {
+		// ssn_id = sid;// 오류 - 이유는? final 변수는 생성자에서 선언되었기 때문에 setter로 변경 불가
+	}
+
+	public final String toString() {
+		return name + ", " + age;
+	}
+}
+
+class Student2 extends Person2 {
+	String dept;
+
+	public Student2(String name, int age, String dept) {
+		super(name, age);
+		this.dept = dept;
+	}
+//	public final String toString() { // 오류, override 불가, Person class에서 toString()은 final이기 때문
+//		return super.toString() + ", " + dept;
+//	}
+}
+
+public class PersonFinal {
+
+	public static void main(String[] args) {
+		Student2 s2 = new Student2("딥러닝");
+		System.out.println(s2);
+
+	}
+
+}

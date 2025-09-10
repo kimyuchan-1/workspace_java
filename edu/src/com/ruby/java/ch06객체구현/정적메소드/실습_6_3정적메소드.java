@@ -1,4 +1,5 @@
 package com.ruby.java.ch06객체구현.정적메소드;
+@SuppressWarnings("unused")
 
 class Student {
 	// 필드

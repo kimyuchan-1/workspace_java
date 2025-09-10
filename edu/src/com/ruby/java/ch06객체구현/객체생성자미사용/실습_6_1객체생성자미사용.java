@@ -1,5 +1,5 @@
 package com.ruby.java.ch06객체구현.객체생성자미사용;
-
+@SuppressWarnings("unused")
 
 class Student {
 	// 필드
