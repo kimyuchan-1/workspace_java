@@ -1,0 +1,102 @@
+package com.ruby.java.ch07상속;
+abstract class Employee2 {//추상 클래스, 객체가 없는 클래스 <-> concrete 클래스, 구체적인 객체를 가진 클래스
+	// 앞선 Person 클래스와의 차이점: Person 클래스는 상속받는 Student, Professor, Employee 클래스에 속하지 않는 객체를 가질 수 있음
+	String name;
+	int salary;
+	// 추상 클래스이어도 생성자 작성 가능
+	public Employee2() {} // default 생성자를 선언해야함, 자동 생성하는 생성자를 선언하지 않으면 오류 발생
+	// name = null, salary = 0 default 값으로 초기화
+	
+	public Employee2(String name, int salary) {
+		this.name = name;
+		this.salary = salary;
+	}
+	
+	public abstract void calcSalary();//추상 메소드, 함수 이름만 있는 메소드, 추상 메소드를 포함하는 클래스는 반드시 추상 클래스여야 함
+	public abstract void calcBonus();
+}
+abstract class Salesman extends Employee2 {//307페이지 하단 밑에서 두번째 문단, 상속받은 추상 클래스의 추상 메소드가 2개인데 1개만 구현 -> 추상 클래스로 정의
+	int salesQty;
+	
+	public Salesman(String name, int salary, int salesQty) {
+		super(name,salary);
+		this.salesQty = salesQty;
+	}
+	
+	public Salesman() {
+		super();
+	}
+	
+	public void calcSalary() { // 추상 클래스를 상속받은 자식 클래스는 반드시 부모 클래스의 추상 메소드를 오버라이딩해야 함
+		System.out.println("Salesman 급여 = 기본급+판매수당*판매량");
+	}
+}
+class DomesticSalesman extends Salesman {
+	int domesticSalesQty;
+	
+	public DomesticSalesman(String name, int salary, int salesQty, int domesticSalesQty) {
+		super(name,salary,salesQty);
+		this.domesticSalesQty = domesticSalesQty;	
+	}
+	
+	public void calcBonus() {
+		System.out.println("DomesticSalesman 보너스 = 기본급* 0.01");
+	}
+}
+class Consultant extends Employee2 {
+	int consultingHours;
+	
+	public Consultant(String name, int salary, int consultingHours) {
+		super(name,salary);
+		this.consultingHours = consultingHours;
+	}
+	
+	public Consultant() {} // 자바 컴파일러가 자동생성
+	
+	public void calcSalary() {
+		System.out.println("Consultant 급여 = 기본급+컨설팅단가 * 컨설팅 시간");
+	}
+	public void calcBonus() {
+		System.out.println("Consultant 보너스 = 기본급* 0.02");
+	}
+}
+class Manager extends Employee2 {
+	int teamNumbers;
+	
+	public Manager(String name, int salary, int teamNumbers) {
+		super(name,salary);
+		this.teamNumbers = teamNumbers;
+	}
+	
+	public Manager() {}
+	
+	public void calcSalary() {
+		System.out.println("Manager 급여 = 기본급+관리자단가 * 팀수");
+	}
+	public void calcBonus() {
+		System.out.println("Manager 보너스 = 기본급* 0.03");
+	}
+}
+public class HRSTest {
+
+	public static void main(String[] args) {
+		//Salesman s = new Salesman();//추상 클래스 -> 객체 생성 불가
+		Employee2 s = new DomesticSalesman("Amy",3000000,10,100000);
+		// 상위 class의 필드는 하위 class의 필드보다 적기 때문에 하위 class의 객체를 가질 수 있지만,
+		// 하위 class는 상위 class의 객체를 가질 수 없음
+		// heap 영역에서 저장된 인스턴스가 상위 class의 경우 하위 class 객체를 포함시킬 수 있지만
+		// 반대로 하위 class의 경우 상위 class의 인스턴스가 하위 class가 가져야 할 속성을 가지지 않기 때문에
+		// 하위 class는 상위 class의 객체를 가질 수 없음
+		
+		Employee2 c = new Consultant();
+		Employee2 m = new Manager();
+		s.calcSalary();
+		c.calcSalary();
+		m.calcSalary();
+		s.calcBonus();
+		c.calcBonus();
+		m.calcBonus();
+
+	}
+
+}

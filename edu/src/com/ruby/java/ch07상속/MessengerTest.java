@@ -6,13 +6,13 @@ package com.ruby.java.ch07상속;
  *  3) 다중 상속이 필요한 상황에서 여러 인터페이스를 구현하여 상속 처리
  */
 interface Messenger {
-	int MIN_SIZE = 1;//컴파일러가 public static final int로 자동 변환
+	int MIN_SIZE = 1;//컴파일러가 public static final int로 자동 변환, 고정된 상수만 인터페이스에 쓸 수 있음;
 	public static final int MAX_SIZE = 999999;
 	
 	public String getMessage();//컴파일러가 public abstract를 자동 추가
 	public abstract void setMessage(String msg);
 	
-	public default void setLogin(boolean login) {//인터페이스를 상속받는 클래스들에서 공통적으로 사용
+	public default void setLogin(boolean login) {//인터페이스를 상속받는 클래스들에서 공통적으로 사용, 바디를 가지는 메소드를 선언하기 위해서는 default를 사용해야 함
 		log();
 		if (login) {
 			System.out.println("로그인");
@@ -23,7 +23,7 @@ interface Messenger {
 	public static void getConnection() {//클래스의 static 메소드와 같다
 		System.out.println("네트워크 연결");
 	}
-	static void log() {//public, abstract, default, static 만 가능
+	private void log() {//public, abstract, default, static 만 가능/ private를 사용하는 이유: Messenger 인터페이스 내에서만 호출, 디버깅이 간단해짐
 		System.out.println("start job!");
 	}
 }
@@ -55,7 +55,7 @@ class Visualize{
 		System.out.println("데이터를 색상/농도로 시각화");
 	}
 }
-class GalaxyMessenger2 implements Messenger, WorkFile {
+class GalaxyMessenger2 implements Messenger, WorkFile { // 인터페이스는 여러 개를 상속받을 수 있음, 클래스와 다름
 	public String getMessage() {
 		return "galaxy";
 	}
@@ -69,7 +69,7 @@ class GalaxyMessenger2 implements Messenger, WorkFile {
 		System.out.println("file을 download");
 	}
 }
-class GalaxyMessenger3 extends Visualize implements Messenger, WorkFile {
+class GalaxyMessenger3 extends Visualize implements Messenger, WorkFile { // 인터페이스와 클래스를 동시에 상속받을 수 있음
 	public String getMessage() {
 		return "galaxy";
 	}
@@ -88,11 +88,13 @@ public class MessengerTest {
 	public static void main(String[] args) {
 		Messenger.getConnection();//static 메소드 호출
 		
-		IPhoneMessenger iphone = new IPhoneMessenger();
-		GalaxyMessenger galaxy = new GalaxyMessenger();
+		Messenger iphone = new IPhoneMessenger();
+		Messenger galaxy = new GalaxyMessenger();
 		
 		System.out.println("메신저 최소 문자 크기" + Messenger.MIN_SIZE);
 		System.out.println("메신저 최대 문자 크기" + Messenger.MAX_SIZE);
+		
+		//Messenger.setLogin(true); // 객체 없이 사용 불가
 		
 	    iphone.setLogin(true);
 	    iphone.getMessage();

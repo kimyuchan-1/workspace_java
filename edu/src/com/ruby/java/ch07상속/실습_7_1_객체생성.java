@@ -8,10 +8,24 @@ class Item { // 제품
 	private int stockQuantity; // 재고량
 	
 	// 생성자 작성
-
+	public Item(String name, double price, int stockQuantity) {
+		this.name = name;
+		this.price = price;
+		this.stockQuantity = stockQuantity;
+	}
 	
 	// Getter 작성
+	public String getName() {
+		return this.name;
+	}
 	
+	public double getPrice() {
+		return this.price;
+	}
+	
+	public int getStockQuatity() {
+		return this.stockQuantity;
+	}
 	
 	@Override
 	public String toString() {
@@ -25,12 +39,16 @@ class Customer {
 	private int age;
 	
 	// 생성자 작성
-
+	public Customer(String cname, String city, int age) {
+		this.cname = cname;
+		this.city = city;
+		this.age = age;
+	}
 
 	// toString 작성
 	@Override
 	public String toString() {
-		return null;
+		return "이름: "+cname+", 도시:"+city+", 나이: "+age;
 	}
 }
 
@@ -42,27 +60,47 @@ class Order {
 	private String orderDates = LocalDate.now().toString(); // 주문일
 
 	// 생성자 작성
-
+	public Order(Customer customer, int count) {
+		this.customer = customer;
+		this.count = count;
+		items = new Item[count];
+		quantities = new int[count];
+		this.count = 0;
+	}
 	
 	// 아이템 추가 메소드
 	public void addItem(Item item, int orderQuantity) {
-
+		items[count] = item;
+		quantities[count] = orderQuantity;
+		count++;
 	}
 
 	// 총액 계산 메소드
 	private double calculateTotal() {
-		return 0.0;
+		double total = 0.0 ;
+		for (int i = 0; i < count; i++) {
+			total += (items[i].getPrice()) * quantities[i];
+		}
+		return total;
 	}
 
     // 주문 요약 출력 메소드
 	public void printOrderSummary() {
-	
+		System.out.println(customer.toString() + ", " +orderDates);
+		for (int i = 0; i < count; i++) {
+			System.out.println("제품명 : "+ items[i].getName() + ", 단가 : "+ items[i].getPrice()+", 개수 : "+ quantities[i]+ " ==> 가격 : "+items[i].getPrice()*quantities[i]);
+		}
+		
+		System.out.println("총액 : "+calculateTotal());
+		
+		System.out.println("-".repeat(55));
 	}
 }
 
 public class 실습_7_1_객체생성 {
+	
 	public static void main(String[] args) {
-/*		
+	
 		// 아이템 생성
 		Item laptop = new Item("노트북", 1200.00, 10);
 		Item tshirt = new Item("티셔츠", 20.00, 50);
@@ -92,7 +130,7 @@ public class 실습_7_1_객체생성 {
 		// 주문 요약 출력
 		order1.printOrderSummary();
 		order2.printOrderSummary();
-*/
+
 		/*
 		 * 출력 결과 예시
 		 * 
