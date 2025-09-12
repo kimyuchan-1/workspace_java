@@ -3,36 +3,40 @@ package com.ruby.java.ch08.innerClass;
  *  inner class: 359페이지 밑에서 두번째, 마지막 문단 이해
  */
 class MyLinkedList {
-	private Node head=null;
+	private Node head=null; // 필드에 객체 node를 가짐
 	
+	public MyLinkedList() {}
+	
+	// 내부 클래스 Node
 	private class Node {
-		private String data;
-		private Node link;
-
+		private String data; // data
+		private Node link; // 객체 node
+		
+		// 생성자
 		public Node(String data) {
 			this.data = data;
 		}
 	}
-
+	// MyLinkedList 클래스의 add() 메소드
 	public void add(String data) {
 		//코드 이해해야 한다 - 자료구조 수업에 도움이 됨
-		Node newNode = new Node(data);
-		if (head == null) {
+		Node newNode = new Node(data); // data는 새로운 Node로 정의됨
+		if (head == null) { // 만약 head가 null이라면 입력된 data를 바탕으로 한 Node 객체를 head에 입력
 			head = newNode;
-		} else {
+		} else { // head가 null이 아니라면 새로운 node 객체 next에 head를 저장
 			Node next = head;
-			while (next.link != null) {
+			while (next.link != null) { // next node가 null이 될 때까지 순회
 				next = next.link;
 			}
-			next.link = newNode;
+			next.link = newNode; // 마지막 node가 새로운 node로 정의됨
 
 		}
 	}
 
 	public void print() {
-		if (head == null) {
+		if (head == null) { // head가 null이라면 아래 출력문
 			System.out.println("등록된 데이터가 없습니다.");
-		} else {
+		} else { // 그렇지 않다면 head가 null이 될 때까지 순회하면서 각 node의 data 출력 
 			System.out.println("등록된 데이터는 다음과 같습니다.");
 			Node next = head;
 			while (next != null) {
@@ -43,9 +47,9 @@ class MyLinkedList {
 	}
 	
 	public void delete(String data) {
-		if (head == null) {
+		if (head == null) { // head가 null이라면 아래 출력문
 			System.out.println("삭제할 데이터가 없습니다.");
-		} else {
+		} else { // 
 			Node p = head;
 			Node q = p;
 			while (p != null) {
@@ -78,7 +82,7 @@ public class MyLinkedListTest {
 		myList.delete("177");
 		System.out.println("삭제후 출력: ");
 		myList.print();
-		//MyLinkedList.Node nd = myList.new Node("Hong");//not visible
-		//nd.data = "hello";
+		//MyLinkedList.Node nd = myList.new Node("Hong");//not visible, 위 Node class가 private이기 때문
+		//nd.data = "hello";// not visible, node 클래스의 data 필드도 private
 	}
 }

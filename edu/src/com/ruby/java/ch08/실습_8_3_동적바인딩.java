@@ -28,16 +28,16 @@ abstract class Item {
 	}
 	
 	
-	@Override
+	@Override // toString() 메소드
 	public String toString() {
 		return "name = " + name + ", price = " + price + ", stockQuantity = " + stockQuantity;
 	}
 	
 	// 재고 감소 메소드
 	public void reduceStock(int quantity) {
-		stockQuantity -= quantity;
+		this.stockQuantity -= quantity;
 	}
-
+	// 추상 메소드 show()
 	public abstract void show();
 
 }
@@ -52,7 +52,7 @@ class Electronics extends Item {
 		this.madeYear = madeYear;
 	}
 	
-	@Override
+	@Override // show() 메소드 재정의, 필드 내용 출력
 	public void show() {
 		System.out.println("Electronics : " + super.toString() + ", madeYear = " + madeYear);
 	}
@@ -68,7 +68,7 @@ class Clothing extends Item {
 		this.size = size;
 	}
 	
-	@Override
+	@Override // show() 메소드 재정의
 	public void show() {
 		System.out.println("Clothing : " + super.toString() + ", size = " + size);
 	}
@@ -76,12 +76,12 @@ class Clothing extends Item {
 
 //Discountable 인터페이스 정의
 interface Discountable {
-	double getDiscountedPrice(double price);
+	double getDiscountedPrice(double price); // getDiscountPrice() 추상 메소드
 }
 
 //SeasonalDiscount 클래스: Discountable 인터페이스 구현
 class SeasonalDiscount implements Discountable {
-	private double seasonalDiscount;
+	private double seasonalDiscount; // 시즌 할인율
 
 	// 생성자
 	public SeasonalDiscount() {
@@ -92,7 +92,7 @@ class SeasonalDiscount implements Discountable {
 		this.seasonalDiscount = seasonalDiscount;
 	}
 	
-	@Override
+	@Override // 상속받은 getDiscountedPrice() 메소드 재정의
 	public double getDiscountedPrice(double price) {
 		return price * seasonalDiscount;
 	}
@@ -100,12 +100,12 @@ class SeasonalDiscount implements Discountable {
 
 //Order 클래스
 class Order extends SeasonalDiscount {
-	private final int N = 20;
+	private final int N = 20; // 주문 당 최대 주문 제품 종류
 	private Customer customer; // 고객명
 	private Item[] items; // 주문 제품들
 	private int[] quantities; // 주문 제품 수량들
 	private String[] orderDates; // 주문일자들
-	private int count = 0;
+	private int count = 0; // 배열 index
 
 	// 생성자
 	public Order(Customer customer, double seasonalDiscount) {
@@ -115,23 +115,29 @@ class Order extends SeasonalDiscount {
 		quantities = new int[N];
 		orderDates = new String[N];		
 	}
-	
+	// addItem(item, quantity, date) 메소드, 재고 확인 및 주문 입력 메소드
 	public void addItem(Item item, int quantity, String date) {
 		// 최대 주문 item 개수를 넘어서는지 확인
-		// item에 재고가 있는지 확인
-		if (item.getstockQuantity() >= quantity) {
-			// 재고가 있으면 아이템 추가
-			items[count] = item;
-			quantities[count] = quantity;
-			orderDates[count] = date; 
-			count++;
-			item.reduceStock(quantity);
-		} else {
-			System.out.println("재고가 부족합니다.");
+		if (quantity <= N) {
+			// item에 재고가 있는지 확인
+			if (item.getstockQuantity() >= quantity) {
+				// 재고가 있으면 아이템 추가
+				items[count] = item;
+				quantities[count] = quantity;
+				orderDates[count] = date; 
+				count++;
+				item.reduceStock(quantity);
+			} else { // 재고가 없다면 해당 제품 재고 부족 알림 출력
+				System.out.println(item.getName() +"의 재고가 부족합니다. 최대 "+item.getstockQuantity()+"개 주문 가능합니다.");
+			}
+		} else { // 최대 주문 제품 개수를 넘었다면 
+			System.out.println(item.getName() + "의 최대 주문 개수를 넘었습니다.");
 		}
 		
+		
+		
 	}
-
+	// 총 구매 금액 계산 메소드
 	private double calculateTotal() {
 		/*
 		 * 할인없이 수량 단가로 비용 계산
@@ -142,7 +148,7 @@ class Order extends SeasonalDiscount {
 		}
 		return total;
 	}
-
+	// 총 할인 금액 계산 메소드
 	private double calculateDiscountTotal() {
 		/*
 		 * 할인을 적용한 비용 계산
@@ -183,7 +189,8 @@ class Order extends SeasonalDiscount {
 			double p2 = (p1-super.getDiscountedPrice(p1)-customer.getDiscountedPrice(p1));
 			System.out.println("제품명 : "+items[i].getName()+", 할인 : "+p2+", 개수 : "+quantities[i]+" ==> 가격 : "+p2*quantities[i]+", 주문일 : "+orderDates[i]);
 		}
-		System.out.println("총액 : "+String.format("%.1f",calculateDiscountTotal()));
+		System.out.println("총액 : "+String.format("%.1f",calculateDiscountTotal())); 
+		// String.format("원하는 형태 %.1f", 입력내용);
 	}
 }
 
@@ -200,7 +207,7 @@ abstract class Customer {
 	public String getName() {
 		return this.name;
 	}
-	
+	// 추상 메소드 getDiscountPrice()
 	abstract double getDiscountedPrice(double price);
 }
 
@@ -213,7 +220,7 @@ class RegularCustomer extends Customer {
 		super(name);
 	}
 	
-	@Override
+	@Override // 상속받은 추상메소드 재정의
 	double getDiscountedPrice(double price) {
 		return price * REGULARDISCOUNT_RATE;
 	}
@@ -228,7 +235,7 @@ class PremiumCustomer extends Customer {
 		super(name);
 	}
 
-	@Override
+	@Override // 상속받은 추상메소드 재정의
 	double getDiscountedPrice(double price) {
 		return price * PREMIUMDISCOUNT_RATE;
 	}
@@ -282,7 +289,7 @@ public class 실습_8_3_동적바인딩 {
 		premiumOrder.printOrderSummary();
 		
 		System.out.println(">>PremiumCustomer 할인된 주문 내역 출력");
-		premiumOrder.printDiscountDetails(); // 할인된 내역 출
+		premiumOrder.printDiscountDetails(); // 할인된 내역 출력
 		System.out.println("-".repeat(80));
 
 		// 모든 아이템의 이름과 재고량, 가격 출력

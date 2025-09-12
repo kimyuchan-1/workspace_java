@@ -2,9 +2,9 @@ package com.ruby.java.ch07상속;
 
 //Item 클래스
 class Item2 {
-	private String name;
-	private double price;
-	private int stockQuantity;
+	private String name; // 제품명
+	private double price; // 제품가격
+	private int stockQuantity; // 제품 재고
 
 	// 생성자
 	public Item2(String name, double price, int stockQuantity) {
@@ -25,16 +25,17 @@ class Item2 {
 	public int getStockQuatity() {
 		return this.stockQuantity;
 	}
-	
+	// 재고 감소 메소드
 	public void reduceStock(int quantity) {
 		stockQuantity -= quantity;
 	}
-
+	// 재고 증가 메소드
 	public void increaseStock(int quantity) {
 		stockQuantity += quantity;
 	}
 	
 	@Override
+	// 클래스 필드 출력
 	public String toString() {
 		return "이름 :" + name + ", 가격 :" + price + ", 재고 :" + stockQuantity;
 	}
@@ -51,6 +52,7 @@ class Electronics extends Item2 {
 	}
 	
 	@Override
+	// 클래스 필드 출력
 	public String toString() {
 		return "이름 :" + getName() + ", 가격 :" + getPrice() + ", 재고 :" + getStockQuatity() + ", 제품 보증 기간 : "+warranty;
 	}
@@ -58,8 +60,8 @@ class Electronics extends Item2 {
 
 //Clothing 클래스 (Item 클래스를 상속)
 class Clothing extends Item2 {
-	private String size;
-	private String color;
+	private String size; // 색상
+	private String color; // 사이즈
 
 	// 생성자
 	public Clothing(String name, double price, int stockQuantity, String size, String color) {
@@ -69,6 +71,7 @@ class Clothing extends Item2 {
 	}
 	
 	@Override
+	//클래스 필드 출력
 	public String toString() {
 		return "이름 :" + getName() + ", 가격 :" + getPrice() + ", 재고 :" + getStockQuatity() + ", 색 : "+color+", 사이즈 : "+size;
 	}
@@ -76,9 +79,9 @@ class Clothing extends Item2 {
 
 //Customer 추상 클래스 정의
 abstract class Customer2 {
-	private String cname;
-	private String city;
-	private int age;
+	private String cname; // 고객명
+	private String city; // 거주 도시
+	private int age; // 나이
 
 	// 생성자
 	public Customer2() {}
@@ -89,18 +92,22 @@ abstract class Customer2 {
 	}
 	
 	@Override
+	// 클래스 필드 출력
 	public String toString() {
 		return "이름 : "+cname+", 도시 :"+city+", 나이 : "+age;
 	}
-
+	
+	// 추상 메소드 할인율
 	abstract double getDiscountRate();
+	// 추상 메소드 할인율 적용
 	abstract double applyDiscount(double totalAmount);
 }
 
 //RegularCustomer 클래스: Customer 클래스를 상속받음
 class RegularCustomer extends Customer2 {
-	static final double REGULARDISCOUNT_RATE = 0.03;
-
+	static final double REGULARDISCOUNT_RATE = 0.03; // 할인율
+	
+	// 생성자
 	public RegularCustomer(String name, String city, int age) {
 		super(name,city,age);
 	}
@@ -114,6 +121,7 @@ class RegularCustomer extends Customer2 {
 	}
 
 	@Override
+	// 할인율 getter
 	double getDiscountRate() {
 		return REGULARDISCOUNT_RATE;
 	}
@@ -121,13 +129,15 @@ class RegularCustomer extends Customer2 {
 
 //PremiumCustomer 클래스: Customer 클래스를 상속받음
 class PremiumCustomer extends Customer2 {
-	static final double PREMIUMDISCOUNT_RATE = 0.1;
+	static final double PREMIUMDISCOUNT_RATE = 0.1; // 할인율
 	
+	// 생성자
 	public PremiumCustomer(String name, String city, int age) {
 		super(name,city,age);
 	}
 
 	@Override
+	// 할인 적용 메소드
 	double applyDiscount(double totalAmount) {
 		double discountedAmount = getDiscountRate()*totalAmount;
 		
@@ -135,6 +145,7 @@ class PremiumCustomer extends Customer2 {
 	}
 	
 	@Override
+	// 할인율 getter
 	double getDiscountRate() {
 		return PREMIUMDISCOUNT_RATE;
 	}
@@ -142,10 +153,11 @@ class PremiumCustomer extends Customer2 {
 
 //Order 클래스
 class Order2 {
-	private Customer2 customer;
-	private Item2[] items;
-	private int[] quantities;
-	private int itemCount;
+	// 클래스 필드 선언
+	private Customer2 customer; // 고객 객체
+	private Item2[] items; // 주문 상품
+	private int[] quantities; // 주문 상품 개수
+	private int itemCount; // 주문 상품 종류 개수
 
 	// 생성자
 	public Order2(Customer2 customer, int itemCount) {
@@ -154,13 +166,13 @@ class Order2 {
 		quantities = new int[itemCount];
 		this.itemCount = 0;
 	}
-	
+	// 상품 추가 메소드
 	public void addItem(Item2 item, int quantity) {
 		items[itemCount] = item;
 		quantities[itemCount] = quantity;
 		itemCount++;
 	}
-
+	// 총 금액 반환 메소드
 	private double calculateTotal() {
 		double total = 0.0;
 		for (int i = 0; i < itemCount; i++) {
@@ -168,12 +180,12 @@ class Order2 {
 		}
 		return total;
 	}
-
+	// 총 할인 금액 반환 메소드
 	private double calculateDiscountedTotal() {
 		return customer.applyDiscount(calculateTotal());
 
 	}
-
+	// 구매 내역 출력 및 합계 금액, 할인 금액 출력 메소드
 	public void printOrderSummary() {
 		/*
 		 * 할인된 가격의 합계 출력 할인 금액 합계 출력

@@ -4,11 +4,15 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="true"/>
 		<list key="findhistory">
+			<item value="consultingHours"/>
+			<item value="Consultant"/>
 			<item value="arr"/>
 			<item value="&gt;"/>
 			<item value="max"/>
 		</list>
 		<list key="replacehistory">
+			<item value="teamNumbers"/>
+			<item value="Manager"/>
 			<item value="price"/>
 			<item value="&lt;"/>
 			<item value="min"/>

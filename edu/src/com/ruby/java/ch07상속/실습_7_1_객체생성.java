@@ -1,7 +1,7 @@
 package com.ruby.java.ch07상속;
 
 import java.time.LocalDate;
-
+// Item 클래스
 class Item { // 제품
 	private String name; // 제품명
 	private double price; // 제품 가격
@@ -28,15 +28,16 @@ class Item { // 제품
 	}
 	
 	@Override
+	// 클래스 필드 출력
 	public String toString() {
 		return "이름:" + name + ", 가격:" + price + ", 재고:" + stockQuantity;
 	}
 }
-
+// Customer 클래스
 class Customer {
-	private String cname;
-	private String city;
-	private int age;
+	private String cname; // 고객명
+	private String city; // 거주도시
+	private int age; // 나이
 	
 	// 생성자 작성
 	public Customer(String cname, String city, int age) {
@@ -46,12 +47,13 @@ class Customer {
 	}
 
 	// toString 작성
+	// 클래스 필드 출력
 	@Override
 	public String toString() {
 		return "이름: "+cname+", 도시:"+city+", 나이: "+age;
 	}
 }
-
+// Order 클래스
 class Order {
 	private Customer customer; // 고객
 	private Item[] items; // 주문 제품들

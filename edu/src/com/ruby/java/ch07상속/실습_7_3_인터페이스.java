@@ -2,12 +2,13 @@ package com.ruby.java.ch07상속;
 
 //Discountable 인터페이스 정의 -시즌 할인율 적용
 interface Discountable {	
+	// getDiscountedPrice 메소드
 	double getDiscountedPrice(double price);
 }
 
 //SeasonalDiscount 클래스: Discountable 인터페이스 구현
 class SeasonalDiscount implements Discountable {
-	private double seasonalDiscountRate;
+	private double seasonalDiscountRate; // 시즌 할인율
 
 	// 생성자
 	public SeasonalDiscount() {}
@@ -27,6 +28,7 @@ class SeasonalDiscount implements Discountable {
 	}
 	
 	@Override
+	// Discountable 인터페이스 메소드 상속받음, 재정의
 	public double getDiscountedPrice(double price) {
 		return price * seasonalDiscountRate;
 	}
@@ -39,7 +41,6 @@ abstract class Item3 {
 	private int stockQuantity; // 재고량
 
 	// 생성자
-	public Item3() {}
 	public Item3(String name, double price, int stockQuantity) {
 		this.name = name;
 		this.price = price;
@@ -59,6 +60,7 @@ abstract class Item3 {
 		return this.stockQuantity;
 	}
 
+	// 재고 감소 메소드
 	public void reduceStock(int quantity) {
 		stockQuantity -= quantity;
 	}
@@ -66,14 +68,14 @@ abstract class Item3 {
 
 //Electronics 클래스: Item 클래스 상속
 class Electronics3 extends Item3 {
-	private int madeYear;
+	private int madeYear; // 생산년도
 
 	// 생성자
 	public Electronics3(String name, double price, int stockQuantity, int madeYear) {
 		super(name,price,stockQuantity);
 		this.madeYear = madeYear;
 	}
-	
+	// toString 메소드
 	public String toString() {
 		return "제품명 : "+getName()+", 단가 : "+getPrice()+", 재고 : "+getStockQuantity()+", 생산년도 : "+madeYear;
 	}
@@ -81,13 +83,14 @@ class Electronics3 extends Item3 {
 
 //Clothing 클래스: Item 클래스 상속
 class Clothing3 extends Item3 {
-	private int size;
+	private int size; // 사이즈
 
 	// 생성자
 	public Clothing3(String name, double price, int stockQuantity, int size) {
 		super(name,price,stockQuantity);
 		this.size = size;
 	}
+	// toString 메소드
 	public String toString() {
 		return "제품명 : "+getName()+", 단가 : "+getPrice()+", 재고 : "+getStockQuantity()+", 사이즈 : "+size;
 	}
@@ -95,14 +98,14 @@ class Clothing3 extends Item3 {
 
 //Order 클래스
 class Order3 extends SeasonalDiscount {
-	private final int N = 20;
+	private final int N = 20; // 주문 당 최대 제품 종류 개수
 	private Customer3 customer; // 고객명
 	private Item3[] items; // 주문 제품들
 	private int[] quantities; // 주문 제품 수량들
 	private String[] orderDates; // 주문일자들
-	private int count;
+	private int count; // 배열 index
 
-	// 생성자
+	// 생성자 Order3(customer, seasonalDiscountRate)
 	public Order3(Customer3 customer, double seasonalDiscountRate) {
 		this.customer = customer;
 		setSeasonalDiscountRate(seasonalDiscountRate);
@@ -111,14 +114,14 @@ class Order3 extends SeasonalDiscount {
 		orderDates = new String[N];
 		this.count = 0;
 	}
-	
+	// addItem(item, quantity, date) 메소드
 	public void addItem(Item3 item, int quantity, String date) {
 		this.items[count] = item;
 		this.quantities[count] = quantity;
 		this.orderDates[count] = date;
 		count++;
 	}
-
+	// 총 구매 금액 계산 메소드
 	private double calculateTotal() {
 		double total = 0.00;
 		for (int i = 0; i < count; i++) {
@@ -126,7 +129,7 @@ class Order3 extends SeasonalDiscount {
 		}
 		return total;
 	}
-
+	// 구매 내역 출력
 	public void printOrderSummary() {
 		System.out.println("고객명 : "+customer.getName());
 		for (int i = 0; i < count; i++) {
